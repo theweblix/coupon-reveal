@@ -13,7 +13,9 @@ export function CouponReveal({
 }: CouponRevealProps) {
   const [copied, setCopied] = useState(false);
   const lastTwo = code.slice(-2);
-  const masked = "•".repeat(Math.max(code.length - 2, 4)) + lastTwo;
+  const lastOne = code.slice(-1);
+  const dots = "•".repeat(Math.max(code.length - 2, 4));
+
 
   const handleClick = () => {
     navigator.clipboard?.writeText(code).catch(() => {});
@@ -31,9 +33,16 @@ export function CouponReveal({
       {/* Coupon code underneath */}
       <div className="ml-auto flex items-center pl-4">
         <span className="font-mono text-lg font-semibold tracking-[0.2em] text-slate-800 select-none">
-          {masked}
+          <span className="transition-opacity duration-300 group-hover:opacity-0">
+            {dots}
+            {lastOne}
+          </span>
+          <span className="opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            {lastTwo}
+          </span>
         </span>
       </div>
+
 
       {/* Sliding blue overlay */}
       <div className="absolute inset-y-0 left-0 w-[72%] overflow-hidden rounded-full bg-gradient-to-br from-blue-600 to-blue-700 transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:-translate-x-3 group-hover:shadow-[0_8px_24px_-6px_rgba(37,99,235,0.5)]">
