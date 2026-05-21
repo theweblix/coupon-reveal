@@ -1,26 +1,25 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { CouponReveal } from "@/components/CouponReveal";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return (
+    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 px-6 py-16">
+      <div className="w-full max-w-md space-y-8">
+        <div className="space-y-2 text-center">
+          <h1 className="text-3xl font-semibold tracking-tight text-slate-900">
+            Exclusive offer
+          </h1>
+          <p className="text-sm text-slate-500">
+            Click to reveal & copy your discount code.
+          </p>
+        </div>
+        <CouponReveal code="SUMMERD5" />
+        <CouponReveal code="WELCOME10" label="Get Coupon" />
+      </div>
+    </main>
+  );
 }
